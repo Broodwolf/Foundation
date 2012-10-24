@@ -1,0 +1,72 @@
+%Document writen by Alex Bickel deriving some Foundation ship math, written 10/23/2012
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+ \let\oldsqrt\sqrt
+ \def\sqrt{\mathpalette\DHLhksqrt}
+ \def\DHLhksqrt#1#2{\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+ \advance\dimen0-0.2\ht0
+ \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}
+ {\box0\lower0.4pt\box2}}
+\usepackage{enumerate}
+\setlength{\parindent}{0mm}
+%for formatting, I add a tab function
+\newcommand{\tab}{\hspace*{2em}}
+\usepackage{url}
+\usepackage[mathscr]{euscript}
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\usepackage{braket}
+\begin{document}
+
+The following is a report on some of the numbers we're dealing with on Project Foundation. They're the best estimates I can make so far of the number of colonists and the mass of the Colony Ship Foundation (CSF) and its fuel. My results are that the CSF could transport 1,000 colonists if it had a dry weight of 30,000,000 kilograms and carried 120,000,000 kilograms of conventional fuel.\\
+\\
+The International Space Station (ISS) is the model I used to represent how much mass it takes to build a ship that can support life for extended periods. The ISS holds a crew of 6 and has a mass of 5 * $10^6$ kg.\\
+\\
+What if we wanted to build a new space station that could support a crew of 7? of 8? Just how many people are on the CSF? Astronomers and physicists just \textbf{love} their TLAs, don't we?\\
+\\
+First, a self-sufficient colony will be approximately $100 < N < 10,000$. The arithmetic average is 5,000, but I don't think that's fair. Let's use the geometric mean, \textbf{1,000 individuals}, because it's the same factor different from my upper and lower bounds. Next up: how big of a ship could house them?\\
+\\
+At a first-order approximation, we'd add something like (mass of the ISS) / (crew of the ISS) additional mass per person, which is 75,000 $\frac{kg}{person}$.\\
+\\
+As we scale our colony ship Foundation up from there, I imagine we grow in efficiency, such that it will take less than $75,000$ kg of additional ship mass to accomodate each additional colonist. It could take more, even much more, however. Consider that these colonists will be living in their quarters for much more time as well as in much greater comfort than those on the ISS. \\
+\\
+For the moment, at least, my estimate rather boldly predicts that supporting crew will end up being much more efficient, rather than less, since the CSF will have dedicated living area. Space will not need to be devoted to all of the scientific purposes the ISS has, although the CSF will have those, too. That is, she won't need more and more instruments for each additional passenger. So, just how much mass will be required?\\
+\\
+My revised guess is that the amount of additional mass would be more than $20\%$ but less than $75\%$ of the mass it would require to make the ISS $\frac{1}{6}$ bigger. Again I choose the geometric mean, which is $40\%$.\\
+\\
+The unloaded mass of the CSF, therefore, is approximately 
+
+$$m_f = (m_{ISS}) + (m_{+1crew}) (C_{efficiency}) (N_{colonists})$$
+
+$$m_f = (450,000 kg) + (75,000 \frac{kg}{person}) (0.4) (1,000 persons) = 3.0 * 10^7 kg,$$
+
+which is the mass it will have at $t_4$, when it arrives at the planet Frontier. The Space Shuttle is only 340,000 kg, so our ship is an impressive 90 Space Shuttles big!\\
+\\
+The energy required to move all this material into low Earth orbit is large but not important here because Earthlings will pay it before we take off. It's expensive to move the materials into position, construct them into a ship, and move colonists into place, but they spend it because exploration is important. None of that energy needs to be spent before final lift-off from the launch platform in space, which is a major advantage of multi-stage space endeavors.\\
+Ok, so the colonists are in position $2,000$ km above the Earth's surface, the ship has been mounted to the shuttle's engines, and our fuel tanks are filled to the brim. We're ready to fly! But how much fuel is "filled to the brim?"\\
+\\
+Well, to find out how much propellant we can load, $m_p$, we apply a reasonable propellant mass fraction $\xi$, the ratio between $m_p$ and the initial ship mass $m_i$, of 0.8.
+
+\begin{eqnarray}
+\xi &=& m_p / m_i \nonumber\\
+\xi &=& m_p / (m_p + m_f) \nonumber\\
+m_p &=& \frac{\xi m_f}{1-\xi} \nonumber\\
+m_f &=& 3 *10^7 \mathrm{kg}\\
+m_p &=& 1.2*10^8 \mathrm{kg} \\
+m_i &=& 1.5*10^8\mathrm{kg}
+\end{eqnarray}
+
+Ok, how far does 120,000,000 kg of fuel take us? I don't know! That's an open question. Important in answering may be Tsiolkovsky's rocket equation and the escape velocity of the Solar System with respect to the Milky Way's gravity (which is 525 km/s).
+
+$$\Delta v = v_e\mathrm{ln}\frac{m_i}{m_f},$$
+
+where:\\
+\\
+\tab $m_i$ is the initial total mass, including propellant,\\
+\tab $m_f$ is the final total mass,\\
+\tab $v_e$ is the effective exhaust velocity, and\\
+\tab $\Delta v$ is the maximum change of speed of the ship.\\
+\\
+Of course, you can only even use this equation for non-relativistic speed /facepalm. I'll need to do some more research to calculate how fast we're going as a function of time and the total relativistic effect on proper time.
+
+
+\end{document}
